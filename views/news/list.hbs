@@ -1,0 +1,11 @@
+<div class="container d-flex justify-content-around">
+    {{#each news}}
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{header}}</h5>
+            <a href="/news/{{_id}}" class="card-link">See Details</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

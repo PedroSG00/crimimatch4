@@ -1,0 +1,7 @@
+<form action=" /news/{{news._id}}/{{comment._id}}/edit-comment" method="POST">
+    <div class="mb-3">
+        <textarea type='text' class="form-control" id="text" rows="1" placeholder="Update your comment!"
+            name="text">{{comment.text}}</textarea>
+        <input type="submit" value="Update comment" class="btn btn-success m-3">
+    </div>
+</form>
