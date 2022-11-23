@@ -37,6 +37,7 @@
                      <button class="nav-link border-0 bg-light">Log-Out</button>
                   </form>
                </li>
+               {{#if admin}}
                <li class="nav-item">
 
                   <div class="dropdown ">
@@ -57,6 +58,29 @@
                <li class="nav-item">
                   <a class="nav-link" href="/wanted/match">Find your match</a>
                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/auth/profile">Profile</a>
+               </li>
+
+               <li class="nav-item">
+                  <a class="nav-link" href="/user/list">User list</a>
+               </li>
+               {{/if}}
+               {{#if user}}
+               <li class="nav-item">
+               <li class="nav-item">
+                  <a class="nav-link" href="/news/list">News list</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/wanted/api">Criminal List</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/wanted/match">Find your match</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/auth/profile">Profile</a>
+               </li>
+               {{/if}}
             </ul>
          </div>
       </div>

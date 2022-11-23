@@ -7,18 +7,5 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get('/profile', (req, res, next) => {
-
-  User
-    .findById(req.session.currentUser._id)
-    .then(userDetails => {
-
-    })
-
-})
-
-
-
-
 
 module.exports = router;

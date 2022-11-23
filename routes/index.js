@@ -16,6 +16,8 @@ module.exports = app => {
     const criminalRouter = require('./criminals.routes')
     app.use('/wanted', criminalRouter)
 
-    // COMENTARIO PRUEBA PEDRO
+    const userRouter = require('./user.routes')
+    app.use('/user', userRouter)
+
 }
 
