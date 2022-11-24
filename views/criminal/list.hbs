@@ -23,10 +23,11 @@
         {{#each arr}}
         <div class="col-md-3 d-flex justify-content-center mt-5">
             <div class="card" style="width: 18rem;">
-                <img src="{{images.1.original}}" class="card-img-top" alt="No criminal image found">
+                <img src="{{images.1.original}}" class="card-img-top img-fluid" alt="No criminal image found">
                 <div class="card-body">
                     <p class="card-text">{{title}}</p>
                 </div>
+                <a class="btn btn-dark" href="/wanted/api/{{title}}/details">Details</a>
             </div>
         </div>
         {{/each}}

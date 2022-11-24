@@ -6,10 +6,23 @@ a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
-}
-
 .titles-result {
   color: crimson;
+}
+
+.imageSize {
+  width: 20%;
+}
+
+.fbi-logo {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 20%;
+}
+
+.Wanted-title {
+  font-family: Hoefler;
+  font-size: 50px;
+  margin-right: 50px;
+  color: white;
 }
