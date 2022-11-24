@@ -19,8 +19,7 @@ router.post('/create', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
             // console.log(news)
             res.redirect('/news/list')
         })
-        .catch(err => res.redirect('/news/create')
-        )
+        .catch(err => next(err))
 
 })
 
@@ -32,6 +31,7 @@ router.get('/list', loggedIn, (req, res, next) => {
         .then(news => {
             res.render('news/list', { news })
         })
+        .catch(err => next(err))
 
 })
 
@@ -61,6 +61,7 @@ router.get('/:id', loggedIn, (req, res, next) => {
                 isAdmin: req.session.currentUser.role === 'ADMIN'
             })
         })
+        .catch(err => next(err))
 })
 
 router.post('/:id/delete', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
@@ -76,7 +77,7 @@ router.post('/:id/delete', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
             res.redirect('/news/list')
 
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
 })
 
@@ -88,6 +89,7 @@ router.get('/:id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
         .then(newsDetails => {
             res.render('news/edit', newsDetails)
         })
+        .catch(err => next(err))
 })
 
 router.post('/:id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
@@ -100,7 +102,7 @@ router.post('/:id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
         .then(() => {
             res.redirect(`/news/${news_Id}`)
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
 })
 

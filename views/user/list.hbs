@@ -1,0 +1,12 @@
+<div class="container">
+    {{#each users}}
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{username}}</h5>
+            <p class="card-text">{{email}}</p>
+            <a href="/user/list/{{_id}}" class="btn btn-success">Show details</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

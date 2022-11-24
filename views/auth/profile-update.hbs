@@ -1,0 +1,43 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <h1>Edit your profile</h1>
+            <hr>
+
+            <form action="/auth/profile/{{_id}}/edit" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{email}}">
+                        <div class="form-text">Required.</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{username}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Profile Image</label>
+                    <input type="file" class="form-control" id="imageUrl" name="imageField">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark block">Submit changes</button>
+                </div>
+
+                {{#if errorMessage}}
+                <div id="errorMessage">
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
+
+            </form>
+        </div>
+    </div>
+
+</div>
