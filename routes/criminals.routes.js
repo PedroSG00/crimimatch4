@@ -12,7 +12,15 @@ router.get('/api', (req, res, next) => {
         .then(res => res.json())
         .then(responseFromAPI => {
             const arr = responseFromAPI.items
-            res.render('criminal/list', { arr })
+            console.log(arr[0])
+            res.render('criminal/list', {
+                arr,
+                defaultImage: arr.map(elm => {
+                    if (elm.images.original === undefined) {
+                        elm.images.original = 'https://www.nicepng.com/png/detail/73-730154_open-default-profile-picture-png.png'
+                    }
+                })
+            })
         })
         .catch(err => console.error('ERROR', err))
 })

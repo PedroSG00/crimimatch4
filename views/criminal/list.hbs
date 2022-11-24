@@ -23,7 +23,9 @@
         {{#each arr}}
         <div class="col-md-3 d-flex justify-content-center mt-5">
             <div class="card" style="width: 18rem;">
-                <img src="{{images.1.original}}" class="card-img-top img-fluid" alt="No criminal image found">
+                <img src="{{images.1.original}}" class="card-img-top img-fluid"
+                    onerror="this.src='https://www.nicepng.com/png/detail/73-730154_open-default-profile-picture-png.png';"
+                    alt="No criminal image found">
                 <div class="card-body">
                     <p class="card-text">{{title}}</p>
                 </div>
@@ -34,4 +36,5 @@
     </div>
 
 
+</div>
 </div>

@@ -71,9 +71,12 @@ router.get('/profile', loggedIn, (req, res, next) => {
 
     User
         .findById(req.session.currentUser._id)
-        .populate('favourites')
+        .populate('favorites')
         .then(userDetails => {
-            res.render('user/profile', userDetails)
+            res.render('user/profile', {
+                userDetails,
+                notEmpty: userDetails.favorites.length > 0
+            })
 
         })
         .catch(error => next(error))
@@ -131,6 +134,19 @@ router.post('/:news_Id/add-favorites', loggedIn, (req, res, next) => {
         })
         .catch(err => next(err))
 })
+
+router.post('/:news_Id/delete-favorites', loggedIn, (req, res, next) => {
+
+    const { news_Id } = req.params
+
+    User
+        .findByIdAndUpdate(req.session.currentUser._id, { $pull: { favorites: news_Id } })
+        .then(() => {
+            res.redirect(`/news/${news_Id}`)
+        })
+        .catch(err => next(err))
+})
+
 
 
 

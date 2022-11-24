@@ -11,8 +11,9 @@
             <div class="card text-center">
                 <h2 class="titles-result mt-3">{{title}}</h2>
                 <h3 class="card-text">{{subjects}}</h3>
-                <img class="card-img-top imageSize rounded mx-auto d-block" src="{{images.[0].original}}"
-                    alt="No criminal image found">
+                <img class="card-img-top imageSize rounded mx-auto d-block"
+                    onerror="this.src='https://www.nicepng.com/png/detail/73-730154_open-default-profile-picture-png.png';"
+                    src="{{images.[0].original}}" alt="No criminal image found">
                 <div class="card-body">
                     <h5 class="titles-result">Description</h5>
                     <p class="card-text">{{description}}</p>

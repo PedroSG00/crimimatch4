@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/User.model')
 const New = require('../models/New.model')
 const Comments = require('../models/Comment.model')
-const { loggedIn, loggedOut, checkRoles } = require('../middleware/route-guard')
+const { loggedIn, checkRoles } = require('../middleware/route-guard')
 
 router.get('/create', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
@@ -72,8 +72,13 @@ router.post('/:id/delete', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
     const { id: news_Id } = req.params
 
-    New
-        .findByIdAndDelete(news_Id)
+    const promises = [
+        New.findByIdAndDelete(news_Id),
+        User.findByIdAndUpdate(req.session.currentUser._id, { $pull: { favorites: news_Id } })
+    ]
+
+    Promise
+        .all(promises)
         .then(() => {
             res.redirect('/news/list')
         })
@@ -107,18 +112,6 @@ router.post('/:id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
 })
 
 
-router.post('/:news_Id/:user_Id/add-favourites', loggedIn, (req, res, next) => {
-
-    const { news_Id, user_Id } = req.params
-    // const { header, image, body, link, comments } = req.body
-    User
-        .findByIdAndUpdate(req.session.currentUser._id, { $addToSet: { favourites: news_Id } })
-        .then(favNew => {
-            console.log(favNew)
-            res.redirect(`/news/${news_Id}`)
-        })
-        .catch(err => next(err))
-})
 
 
 
