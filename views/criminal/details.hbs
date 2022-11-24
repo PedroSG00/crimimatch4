@@ -1,6 +1,6 @@
 <div style="background-color:grey;">
     <div class="container">
-        <h1 class="d-flex justify-content-center Wanted-title">Congratulations you have a Crimimatch</h1>
+        <h1 class="d-flex justify-content-center Wanted-title">Criminal details</h1>
 
         <header class="d-flex justify-content-center align-items-center" style="background-color: #C92300;">
             <img class="fbi-logo" src="/images/pngwing.com.png" alt="FBI LOGO">
@@ -9,23 +9,23 @@
 
         <div>
             <div class="card text-center">
-                <h2 class="titles-result mt-3">{{criminal.title}}</h2>
-                <h3 class="card-text">{{criminal.subjects}}</h3>
-                <img class="card-img-top imageSize rounded mx-auto d-block img-fluid"
-                    src="{{criminal.images.[0].original}}" alt="No criminal image found">
+                <h2 class="titles-result mt-3">{{title}}</h2>
+                <h3 class="card-text">{{subjects}}</h3>
+                <img class="card-img-top imageSize rounded mx-auto d-block" src="{{images.[0].original}}"
+                    alt="No criminal image found">
                 <div class="card-body">
                     <h5 class="titles-result">Description</h5>
-                    <p class="card-text">{{criminal.description}}</p>
+                    <p class="card-text">{{description}}</p>
                     <h5 class="titles-result">Raza</h5>
-                    <p class="card-text">{{criminal.race_raw}}</p>
+                    <p class="card-text">{{race_raw}}</p>
                     <h5 class="titles-result">Details</h5>
-                    <p class="card-text">{{criminal.details}}</p>
+                    <p class="card-text">{{details}}</p>
                     <h5 class="titles-result">Physics marks</h5>
-                    <p class="card-text">{{criminal.scars_and_marks}}</p>
+                    <p class="card-text">{{scars_and_marks}}</p>
                     <h5 class="titles-result">Alias</h5>
-                    <p class="card-text">{{criminal.aliases}}</p>
+                    <p class="card-text">{{aliases}}</p>
                     <h5 class="titles-result">Person classification</h5>
-                    <p class="card-text">{{criminal.person_classification}}</p>
+                    <p class="card-text">{{person_classification}}</p>
                 </div>
             </div>
         </div>
