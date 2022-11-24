@@ -16,7 +16,7 @@ router.post('/:news_Id', loggedIn, (req, res, next) => {
             return New.findByIdAndUpdate(news_Id, { $push: { comments: newComment._id } })
         })
         .then(res.redirect(`/news/${news_Id}`))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 router.post('/:news_Id/:comment_Id/delete-comment', loggedIn, (req, res, next) => {
@@ -30,7 +30,7 @@ router.post('/:news_Id/:comment_Id/delete-comment', loggedIn, (req, res, next) =
             return New.findByIdAndUpdate(news_Id, { $pull: { comments: deletedComment._id } })
         })
         .then(res.redirect(`/news/${news_Id}`))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
 })
 
@@ -49,7 +49,7 @@ router.get('/:news_Id/:comment_Id/edit-comment', loggedIn, (req, res, next) => {
         .then(([news, comment]) => {
             res.render('news/edit-comment', { news, comment })
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 router.post('/:news_Id/:comment_Id/edit-comment', loggedIn, (req, res, next) => {
@@ -63,9 +63,10 @@ router.post('/:news_Id/:comment_Id/edit-comment', loggedIn, (req, res, next) => 
             return New.findByIdAndUpdate(news_Id, { comment: updatedComment._id })
         })
         .then(res.redirect(`/news/${news_Id}`))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
 })
+
 
 module.exports = router;
 

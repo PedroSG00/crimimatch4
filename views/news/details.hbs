@@ -6,6 +6,14 @@
                 <img src="{{newsDetails.image}}" alt="An image">
                 <p class="card-text fs-5 m-5">{{newsDetails.body}}</p>
 
+                <form action="/user/{{newsDetails._id}}/add-favorites" method="POST">
+                    <input type="submit" value="❤" class="btn btn-outline-danger btn-md me-1 mb-3">
+                </form>
+                {{!-- <form action="/news/{{../newsDetails._id}}//add-favourites" method="POST">
+                    <input type="submit" value="♡" class="btn btn-outline-danger btn-md me-1 mb-3">
+                </form> --}}
+
+
                 {{#if isAdmin}}
 
                 <a href="/news/{{newsDetails._id}}/edit" class="btn btn-outline-success">Edit new</a>

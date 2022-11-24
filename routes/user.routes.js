@@ -67,4 +67,73 @@ router.post('/list/:user_id/delete', loggedIn, checkRoles('ADMIN'), (req, res, n
 })
 
 
+router.get('/profile', loggedIn, (req, res, next) => {
+
+    User
+        .findById(req.session.currentUser._id)
+        .populate('favourites')
+        .then(userDetails => {
+            res.render('user/profile', userDetails)
+
+        })
+        .catch(error => next(error))
+
+})
+
+router.get('/profile/:profile_id/edit', loggedIn, (req, res, next) => {
+
+    const { profile_id } = req.params
+
+    User
+        .findById(profile_id)
+        .then(userUpdate => {
+            res.render('user/profile-update', userUpdate)
+        })
+        .catch(error => next(error))
+
+})
+
+router.post('/profile/:profile_id/edit', loggedIn, uploader.single('imageField'), (req, res, next) => {
+
+    const { profile_id } = req.params
+    const { username, email } = req.body
+    const { path: imageUrl } = req.file
+
+    User
+        .findByIdAndUpdate(profile_id, { username, imageUrl, email })
+        .then(() => {
+            res.redirect('/user/profile')
+        })
+        .catch(error => next(error))
+})
+
+router.post('/profile/:profile_id/delete', loggedIn, (req, res, next) => {
+
+    const { profile_id } = req.params
+
+    User
+        .findByIdAndDelete(profile_id)
+        .then(() => {
+            res.redirect('/auth/sign-up')
+        })
+        .catch(err => next(err))
+
+})
+
+router.post('/:news_Id/add-favorites', loggedIn, (req, res, next) => {
+
+    const { news_Id } = req.params
+
+    User
+        .findByIdAndUpdate(req.session.currentUser._id, { $addToSet: { favorites: news_Id } })
+        .then(() => {
+            res.redirect(`/news/${news_Id}`)
+        })
+        .catch(err => next(err))
+})
+
+
+
+
+
 module.exports = router

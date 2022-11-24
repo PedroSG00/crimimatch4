@@ -50,9 +50,10 @@ router.get('/:id', loggedIn, (req, res, next) => {
         })
         .then(newsDetails => {
             const role = req.session.currentUser.role
-            const updatedComments = newsDetails.comments.map(comment => {
-                req.session.currentUser._id === comment.author._id.toString() || role === 'ADMIN' ? comment.isUser = true : comment.isUser = false
+            const userId = req.session.currentUser._id
 
+            const updatedComments = newsDetails.comments.map(comment => {
+                userId === comment.author._id.toString() || role === 'ADMIN' ? comment.isUser = true : comment.isUser = false
                 return comment
             })
 
@@ -60,7 +61,8 @@ router.get('/:id', loggedIn, (req, res, next) => {
 
             res.render('news/details', {
                 newsDetails,
-                isAdmin: req.session.currentUser.role === 'ADMIN'
+                isAdmin: req.session.currentUser.role === 'ADMIN',
+                userId
             })
         })
         .catch(err => next(err))
@@ -103,6 +105,23 @@ router.post('/:id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
         })
         .catch(err => next(err))
 })
+
+
+router.post('/:news_Id/:user_Id/add-favourites', loggedIn, (req, res, next) => {
+
+    const { news_Id, user_Id } = req.params
+    // const { header, image, body, link, comments } = req.body
+    User
+        .findByIdAndUpdate(req.session.currentUser._id, { $addToSet: { favourites: news_Id } })
+        .then(favNew => {
+            console.log(favNew)
+            res.redirect(`/news/${news_Id}`)
+        })
+        .catch(err => next(err))
+})
+
+
+
 
 
 module.exports = router
