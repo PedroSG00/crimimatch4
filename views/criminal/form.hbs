@@ -1,8 +1,8 @@
 <form class="container" action="/wanted/match/result" method="GET">
-    <h1>Crimimatch</h1>
+    <h1 class="d-flex justify-content-center mt-5">Crimimatch</h1>
 
-    <div class="form-row mt-3">
-        <div class="form-group col-md-4 mt-3 mb-3">
+    <div class="form-row mt-3 d-flex justify-content-center">
+        <div class="form-group col-md-4">
             <label for="hair">Hair color</label>
             <select id="hair" name='hair' class="form-control">
                 <option selected>Choose one</option>
@@ -12,8 +12,8 @@
             </select>
         </div>
     </div>
-    <div class="form-row mt-3">
-        <div class="form-group col-md-4 mt-3 mb-3">
+    <div class="form-row mt-3 d-flex justify-content-center">
+        <div class="form-group col-md-4">
             <label for="eyes">Eye color</label>
             <select id="eyes" name='eyes' class="form-control">
                 <option selected>Choose one</option>
@@ -23,8 +23,8 @@
             </select>
         </div>
     </div>
-    <div class="form-row mt-3">
-        <div class="form-group col-md-4 mt-3">
+    <div class="form-row mt-3 d-flex justify-content-center">
+        <div class="form-group col-md-4">
             <label for="sex">Sex</label>
             <select id="sex" name='sex' class="form-control">
                 <option selected>Choose one</option>
@@ -33,8 +33,8 @@
             </select>
         </div>
     </div>
-    <div class="form-row mt-3">
-        <div class="form-group col-md-4 mt-3">
+    <div class="form-row mt-3 d-flex justify-content-center">
+        <div class="form-group col-md-4">
             <label for="race">Race</label>
             <select id="race" name='race' class="form-control">
                 <option selected>Choose one</option>
@@ -45,6 +45,7 @@
             </select>
         </div>
     </div>
-
-    <button type="submit" class="btn btn-dark mt-3">Find your match</button>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-dark mt-3 col-md-4">Find your match</button>
+    </div>
 </form>

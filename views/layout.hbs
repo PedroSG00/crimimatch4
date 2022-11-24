@@ -26,34 +26,7 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarNav">
 
-
-
-
-
             <ul class="navbar-nav">
-               <li class="nav-item">
-                  <div class="dropdown">
-                     <a class="btn btn-secondary dropdown-toggle text-muted bg-light border-0" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Auth
-                     </a>
-                     <ul class="dropdown-menu">
-                        <li class="nav-item">
-                           <a class="nav-link" aria-current="page" href="/auth/sign-up">Sing Up</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="/auth/log-in">Log In</a>
-                        </li>
-                        <li class="nav-item">
-                           <form action="/auth/log-out" method="POST">
-                              <button class="nav-link border-0 bg-light">Log-Out</button>
-                           </form>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-
-
 
                {{#if admin}}
                <li class="nav-item">
@@ -98,6 +71,28 @@
                   <a class="nav-link" href="/auth/profile">Profile</a>
                </li>
                {{/if}}
+
+               <li class="nav-item">
+                  <div class="dropdown">
+                     <a class="btn btn-secondary dropdown-toggle text-muted bg-light border-0" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Auth
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li class="nav-item">
+                           <a class="nav-link" aria-current="page" href="/auth/sign-up">Sing Up</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="/auth/log-in">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                           <form action="/auth/log-out" method="POST">
+                              <button class="nav-link border-0 bg-light">Log-Out</button>
+                           </form>
+                        </li>
+                     </ul>
+                  </div>
+               </li>
             </ul>
          </div>
       </div>
