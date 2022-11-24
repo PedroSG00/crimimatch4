@@ -11,7 +11,6 @@ router.get('/api', (req, res, next) => {
     fetch(`https://api.fbi.gov/wanted/v1/list?page=${page}`)
         .then(res => res.json())
         .then(responseFromAPI => {
-
             const arr = responseFromAPI.items
             res.render('criminal/list', { arr })
         })
@@ -23,6 +22,7 @@ router.get('/match', (req, res, next) => {
 })
 
 router.get('/match/result', (req, res, next) => {
+
     const { hair, eyes, sex } = req.query
 
     console.log(`https://api.fbi.gov/wanted?eyes=${eyes}&hair=${hair}&sex=${sex}`)

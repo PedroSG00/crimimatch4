@@ -1,11 +1,17 @@
 <div class="container d-flex justify-content-around">
-    {{#each news}}
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{header}}</h5>
-            <a href="/news/{{_id}}" class="card-link">See Details</a>
+    <div class="row">
+        {{#each news}}
+        <div class="col-md-6">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <img src="{{image}}" alt="CrimeImage" class="img-fluid">
+                    <h5 class="card-title text-center fw-bold">{{header}}</h5>
+                    <a href="/news/{{_id}}" class="card-link d-grid text-center btn btn-outline-danger">See more</a>
+                </div>
+            </div>
         </div>
+
+        {{/each}}
     </div>
-    {{/each}}
+
 </div>

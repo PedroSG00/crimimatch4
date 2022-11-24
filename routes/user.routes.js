@@ -5,12 +5,11 @@ const uploader = require('../config/upploader.config')
 const { loggedIn, loggedOut, checkRoles } = require('../middleware/route-guard')
 
 
-
-/* GET home page */
 router.get('/list', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
+
     User
         .find({ role: 'USER' })
-        .select({ username: 1, email: 1 })
+        .select({ email: 1, imageUrl: 1 })
         .then(users => {
             res.render('user/list', { users })
         })
@@ -27,8 +26,6 @@ router.get('/list/:user_id', loggedIn, checkRoles('ADMIN'), (req, res, next) => 
             res.render('user/details', userDetails)
         })
         .catch(error => next(error))
-
-
 })
 
 router.get('/list/:user_id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
@@ -41,8 +38,6 @@ router.get('/list/:user_id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next
             res.render('user/edit', user)
         })
         .catch(error => next(error))
-
-
 })
 
 router.post('/list/:user_id/edit', loggedIn, checkRoles('ADMIN'), uploader.single('imageField'), (req, res, next) => {
@@ -53,12 +48,9 @@ router.post('/list/:user_id/edit', loggedIn, checkRoles('ADMIN'), uploader.singl
     User
         .findByIdAndUpdate(user_id, { email, username, imageUrl: req.file.path })
         .then(userDetails => {
-            // console.log(userDetails)
             res.redirect(`/user/list/${user_id}`)
         })
         .catch(error => next(error))
-
-
 })
 
 router.post('/list/:user_id/delete', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
@@ -75,9 +67,4 @@ router.post('/list/:user_id/delete', loggedIn, checkRoles('ADMIN'), (req, res, n
 })
 
 
-
-
-
-
-
-module.exports = router;
+module.exports = router

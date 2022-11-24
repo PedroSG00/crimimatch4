@@ -1,5 +1,5 @@
 
-const User = require('./models/User.model')
+const { rolesViews } = require('./middleware/route-guard');
 
 require("dotenv").config();
 
@@ -7,7 +7,6 @@ require("./db");
 
 const express = require("express");
 
-const hbs = require("hbs");
 
 const app = express();
 
@@ -21,20 +20,7 @@ const projectName = "Crimimatch";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
-app.use((req, res, next) => {
-    if (req.session.currentUser) {
-        if (req.session.currentUser.role === 'ADMIN') {
-            app.locals.admin = req.session.currentUser.role
-        } else {
-            app.locals.user = req.session.currentUser.role
-        }
-
-    } else {
-        app.locals.admin = null
-        app.locals.user = null
-    }
-    next()
-})
+app.use(rolesViews)
 
 
 require("./routes")(app)
