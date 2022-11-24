@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const userSchema = new Schema(
   {
@@ -29,7 +29,12 @@ const userSchema = new Schema(
       type: String,
       enum: ['USER', 'MODERATOR', 'ADMIN'],
       default: 'USER'
-    }
+    },
+
+    favorites: [{
+      type: Types.ObjectId,
+      ref: 'New'
+    }]
 
   },
   {
