@@ -6,6 +6,7 @@ const Comments = require('../models/Comment.model')
 const { loggedIn, loggedOut, checkRoles } = require('../middleware/route-guard')
 
 router.get('/create', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
+
     res.render('news/create')
 });
 
@@ -27,7 +28,7 @@ router.get('/list', loggedIn, (req, res, next) => {
 
     New
         .find()
-        .select({ header: 1 })
+        .select({ header: 1, image: 1 })
         .then(news => {
             res.render('news/list', { news })
         })
@@ -36,8 +37,8 @@ router.get('/list', loggedIn, (req, res, next) => {
 })
 
 router.get('/:id', loggedIn, (req, res, next) => {
-    const { id: news_Id } = req.params
 
+    const { id: news_Id } = req.params
 
     New
         .findById(news_Id)
@@ -48,9 +49,10 @@ router.get('/:id', loggedIn, (req, res, next) => {
             }
         })
         .then(newsDetails => {
-            // console.log('HOLA', newsDetails)
+            const role = req.session.currentUser.role
             const updatedComments = newsDetails.comments.map(comment => {
-                req.session.currentUser._id === comment.author._id.toString() || req.session.currentUser.role === 'ADMIN' ? comment.isUser = true : comment.isUser = false
+                req.session.currentUser._id === comment.author._id.toString() || role === 'ADMIN' ? comment.isUser = true : comment.isUser = false
+
                 return comment
             })
 
@@ -67,21 +69,18 @@ router.get('/:id', loggedIn, (req, res, next) => {
 router.post('/:id/delete', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
     const { id: news_Id } = req.params
-    console.log(news_Id)
 
     New
         .findByIdAndDelete(news_Id)
         .then(() => {
-
-
             res.redirect('/news/list')
-
         })
         .catch(err => next(err))
 
 })
 
 router.get('/:id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
+
     const { id: news_Id } = req.params
 
     New
@@ -103,13 +102,7 @@ router.post('/:id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
             res.redirect(`/news/${news_Id}`)
         })
         .catch(err => next(err))
-
 })
 
 
-
-
-
-
-
-module.exports = router;
+module.exports = router

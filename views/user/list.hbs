@@ -1,12 +1,15 @@
 <div class="container">
-    {{#each users}}
-    <div class="card" style="width: 18rem;">
-        <img src="" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{username}}</h5>
-            <p class="card-text">{{email}}</p>
-            <a href="/user/list/{{_id}}" class="btn btn-success">Show details</a>
+    <div class="row justify-content-around flex-wrap ">
+        {{#each users}}
+        <div class="card text-center" style="width: 18rem;">
+            <img src="{{imageUrl}}" class="card-img-top img-fluid" alt="Profile Image">
+            <div class="card-body">
+                <h5 class="card-title">{{username}}</h5>
+                <p class="card-text">{{email}}</p>
+                <a href="/user/list/{{_id}}" class="btn btn-outline-success">Show details</a>
+            </div>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
+
 </div>

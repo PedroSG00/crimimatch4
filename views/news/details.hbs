@@ -1,75 +1,75 @@
-<div class="card text-center">
-    <div class="card-header">
-        New!
-    </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card text-center border-0 ">
+            <div class="card-body">
+                <h5 class="card-title fw-bold m-5 fs-1">{{newsDetails.header}}</h5>
+                <img src="{{newsDetails.image}}" alt="An image">
+                <p class="card-text fs-5 m-5">{{newsDetails.body}}</p>
 
-    <div class="card-body">
-        <h5 class="card-title">{{newsDetails.header}}</h5>
-        <img src="{{image}}" alt="An image">
-        <p class="card-text">{{newsDetails.body}}</p>
+                {{#if isAdmin}}
 
-        {{#if isAdmin}}
-
-        <a href="/news/{{newsDetails._id}}/edit" class="btn btn-success">Edit new</a>
-        <form action="/news/{{newsDetails._id}}/delete" method="POST">
-            <input type="submit" value="Delete New" class="btn btn-danger m-3">
-        </form>
-        {{/if}}
-    </div>
+                <a href="/news/{{newsDetails._id}}/edit" class="btn btn-outline-success">Edit new</a>
+                <form action="/news/{{newsDetails._id}}/delete" method="POST">
+                    <input type="submit" value="Delete New" class="btn btn-outline-danger m-3">
+                </form>
+                {{/if}}
+            </div>
 
 
 
-    <div>
-        <h4>Comments</h4>
-        {{#each newsDetails.comments}}
-        <hr>
-        <h5>{{author.username}}</h5>
-        <p>{{text}}</p>
+            <div>
+                <h4>Comments</h4>
+                {{#each newsDetails.comments}}
+                <hr>
+                <h5>{{author.username}}</h5>
+                <p>{{text}}</p>
 
-        {{#if isUser}}
+                {{#if isUser}}
 
 
-        <div class="d-flex justify-content-center m-2">
-            <form action="/news/{{../newsDetails._id}}/{{_id}}/delete-comment" method="POST">
-                <input type="submit" value="Delete comment" class="btn btn-danger btn-sm me-1">
+                <div class="d-flex justify-content-center m-2">
+                    <form action="/news/{{../newsDetails._id}}/{{_id}}/delete-comment" method="POST">
+                        <input type="submit" value="Delete comment" class="btn btn-outline-danger btn-sm me-1">
+                    </form>
+
+                    <a href="/news/{{../newsDetails._id}}/{{_id}}/edit-comment"
+                        class="btn btn-outline-success btn-sm">Update
+                        comment</a>
+
+                </div>
+
+                {{/if}}
+
+                {{#if isAdmin}}
+                <div class="d-flex justify-content-center m-2">
+                    <form action="/news/{{../newsDetails._id}}/{{_id}}/delete-comment" method="POST">
+                        <input type="submit" value="Delete comment" class="btn btn-outline-danger btn-sm me-1">
+                    </form>
+
+                    <a href="/news/{{../newsDetails._id}}/{{_id}}/edit-comment" class="btn btn-success btn-sm">Update
+                        comment</a>
+
+                </div>
+                {{/if}}
+
+                {{/each}}
+            </div>
+
+
+
+            <form action=" /news/{{newsDetails._id}}" method="POST">
+                <div class="mb-3">
+                    <textarea type='text' class="form-control" id="text" rows="2" placeholder="Write a comment!"
+                        name="text"></textarea>
+                    <input type="submit" value="Submit comment" class="btn btn btn-outline-info m-3">
+                </div>
             </form>
 
-            <a href="/news/{{../newsDetails._id}}/{{_id}}/edit-comment" class="btn btn-success btn-sm">Update
-                comment</a>
+            <div class="card-footer text-muted">
+                <a href="{{newsDetails.link}}">{{newsDetails.link}}</a>
+            </div>
 
         </div>
-
-        {{/if}}
-
-        {{#if isAdmin}}
-        <div class="d-flex justify-content-center m-2">
-            <form action="/news/{{../newsDetails._id}}/{{_id}}/delete-comment" method="POST">
-                <input type="submit" value="Delete comment" class="btn btn-danger btn-sm me-1">
-            </form>
-
-            <a href="/news/{{../newsDetails._id}}/{{_id}}/edit-comment" class="btn btn-success btn-sm">Update
-                comment</a>
-
-        </div>
-        {{/if}}
-
-        {{/each}}
     </div>
 
-
-
-    <form action=" /news/{{newsDetails._id}}" method="POST">
-        <div class="mb-3">
-            <textarea type='text' class="form-control" id="text" rows="2" placeholder="Write a comment!"
-                name="text"></textarea>
-            <input type="submit" value="Submit comment" class="btn btn-light m-3">
-        </div>
-    </form>
-
-
-
-
-    <div class="card-footer text-muted">
-        {{newsDetails.link}}
-    </div>
 </div>

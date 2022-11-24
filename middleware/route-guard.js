@@ -14,6 +14,21 @@ const checkRoles = (...rolesToCheck) => (req, res, next) => {
     }
 }
 
+const rolesViews = ((req, res, next) => {
+    if (req.session.currentUser) {
+        if (req.session.currentUser.role === 'ADMIN') {
+            req.app.locals.admin = req.session.currentUser.role
+        } else {
+            req.app.locals.user = req.session.currentUser.role
+        }
+
+    } else {
+        req.app.locals.admin = null
+        req.app.locals.user = null
+    }
+    next()
+})
+
 
 
 
@@ -21,6 +36,7 @@ module.exports = {
     loggedIn,
     loggedOut,
     checkRoles,
+    rolesViews,
 }
 
 

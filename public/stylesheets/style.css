@@ -6,6 +6,7 @@ a {
   color: #00b7ff;
 }
 
+
 .titles-result {
   color: crimson;
 }
@@ -25,4 +26,18 @@ a {
   font-size: 50px;
   margin-right: 50px;
   color: white;
-}
+
+  #intro {
+    background-image: url('/images/Indexbg.jpg');
+    height: 100vh;
+    background-size: cover;
+  }
+
+  .h1m {
+    margin-bottom: 350px;
+    letter-spacing: 6px;
+  }
+
+  .body-margin {
+    margin: 500px;
+  }

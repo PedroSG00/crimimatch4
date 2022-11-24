@@ -85,13 +85,12 @@ router.get('/profile/:profile_id/edit', loggedIn, (req, res, next) => {
 router.post('/profile/:profile_id/edit', loggedIn, uploader.single('imageField'), (req, res, next) => {
 
     const { profile_id } = req.params
-    const { username, imageUrl, email } = req.body
-    console.log(req.body)
-    console.log({ profile_id })
-    User
-        .findByIdAndUpdate(profile_id, { username, imageUrl: req.file.path, email })
-        .then(() => {
+    const { username, email } = req.body
+    const { path: imageUrl } = req.file
 
+    User
+        .findByIdAndUpdate(profile_id, { username, imageUrl, email })
+        .then(() => {
             res.redirect('/auth/profile')
         })
         .catch(error => next(error))
@@ -109,6 +108,5 @@ router.post('/profile/:profile_id/delete', loggedIn, (req, res, next) => {
         .catch(err => next(err))
 
 })
-
 
 module.exports = router;
