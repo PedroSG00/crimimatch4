@@ -7,7 +7,7 @@ const { loggedIn, loggedOut, checkRoles } = require('../middleware/route-guard')
 
 
 /* GET home page */
-router.get('/list', loggedIn, (req, res, next) => {
+router.get('/list', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
     User
         .find({ role: 'USER' })
         .select({ username: 1, email: 1 })
@@ -17,7 +17,7 @@ router.get('/list', loggedIn, (req, res, next) => {
         .catch(error => next(error))
 });
 
-router.get('/list/:user_id', loggedIn, (req, res, next) => {
+router.get('/list/:user_id', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
     const { user_id } = req.params
 
@@ -31,7 +31,7 @@ router.get('/list/:user_id', loggedIn, (req, res, next) => {
 
 })
 
-router.get('/list/:user_id/edit', loggedIn, (req, res, next) => {
+router.get('/list/:user_id/edit', loggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
     const { user_id } = req.params
 
@@ -45,7 +45,7 @@ router.get('/list/:user_id/edit', loggedIn, (req, res, next) => {
 
 })
 
-router.post('/list/:user_id/edit', loggedIn, uploader.single('imageField'), (req, res, next) => {
+router.post('/list/:user_id/edit', loggedIn, checkRoles('ADMIN'), uploader.single('imageField'), (req, res, next) => {
 
     const { user_id } = req.params
     const { username, email, imageField } = req.body
