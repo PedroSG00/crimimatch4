@@ -5,10 +5,13 @@ const criminalApi = require('./../services/criminal-api.service')
 const Api = new criminalApi()
 
 router.get('/api', (req, res, next) => {
-    fetch('https://api.fbi.gov/wanted/v1/list')
+
+    const { page } = req.query
+
+    fetch(`https://api.fbi.gov/wanted/v1/list?page=${page}`)
         .then(res => res.json())
         .then(responseFromAPI => {
-            // console.log('RESPONSE', { responseFromAPI })
+
             const arr = responseFromAPI.items
             res.render('criminal/list', { arr })
         })
@@ -22,38 +25,21 @@ router.get('/match', (req, res, next) => {
 router.get('/match/result', (req, res, next) => {
     const { hair, eyes, sex } = req.query
 
-    fetch('https://api.fbi.gov/wanted/v1/list')
+    console.log(`https://api.fbi.gov/wanted?eyes=${eyes}&hair=${hair}&sex=${sex}`)
+
+    fetch(`https://api.fbi.gov/wanted?eyes=${eyes}&hair=${hair}&sex=${sex}`)
         .then(res => res.json())
         .then(responseFromAPI => {
-            console.log('RESPONSE-----------------', { responseFromAPI })
 
-            console.log()
-            const criminalArr = responseFromAPI.items[0]
-            const cleanArr = criminalArr.map(criminal => {
-                console.log(criminal)
-                return {
-                    hair: criminal.hair,
-                    eyes: criminal.eyes,
-                    sex: criminal.sex
-                }
-            })
-            res.render('criminal/result', cleanArr)
+            const index = Math.floor(Math.random() * (responseFromAPI.items.length - 1))
+            const criminal = responseFromAPI.items[index]
+            console.log(criminal)
+            res.render('criminal/result', { criminal })
+
         })
 })
 
-// Api
-//     .getAllCriminals()
-//     .then(response => {
-//         const criminalArr = response.data._items[0]
-//         const cleanArr = criminalArr.map(criminal => {
-//             return {
-//                 hair: criminal.hair,
-//                 eyes: criminal.eyes,
-//                 sex: criminal.sex
-//             }
-//         })
-//     })
-
-
 
 module.exports = router
+
+// { image: criminal.images[0].original }

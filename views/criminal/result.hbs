@@ -1,7 +1,25 @@
-<h1>Congratulations you have a Crimimatch</h1>
-
 <div class="container">
-    <p>{{}}</p>
-</div>
+    <header>
+        <img src="../../public/images/Flag_of_the_Federal_Bureau_of_Investigation.svg.png" alt="FBI LOGO">
+        <h2>WANTED BY THE FBI</h2>
+    </header>
+    <h1>Congratulations you have a Crimimatch</h1>
 
-<button type="submit" class="btn btn-dark mt-3">Try again</button>
+    <div class="card">
+        <img class="card-img-top" src="{{criminal.image}}" alt="No criminal image found">
+        <div class="card-body">
+            <h5 class="titles-result">Name</h5>
+            <p class="card-text">{{criminal.title}}</p>
+            <h5 class="titles-result">Alias</h5>
+            <p class="card-text">{{criminal.aliases}}</p>
+            <h5 class="titles-result">Subject</h5>
+            <p class="card-text">{{criminal.subjects}}</p>
+            <h5 class="titles-result">Description</h5>
+            <p class="card-text">{{criminal.description}}</p>
+            <h5 class="titles-result">Details</h5>
+            <p class="card-text">{{criminal.details}}</p>
+
+        </div>
+    </div>
+
+</div>
