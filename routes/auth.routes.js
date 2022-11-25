@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
-const User = require('./../models/User.model')
+const User = require('../models/User.model')
 const uploader = require('../config/upploader.config')
 const { loggedIn, loggedOut, checkRoles } = require('../middleware/route-guard')
 const { default: mongoose } = require('mongoose')
