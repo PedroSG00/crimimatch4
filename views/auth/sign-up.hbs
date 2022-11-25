@@ -29,7 +29,7 @@
 
                 <div class="mb-3">
                     <label for="imageUrl" class="form-label">Profile Image</label>
-                    <input type="file" class="form-control" id="imageUrl" name="imageField">
+                    <input type="file" class="form-control" id="imageUrl" name="imageField" required>
                     <div class="form-text">Introduce an url with your image profile.</div>
                 </div>
                 <div class="d-grid gap-2">
@@ -38,7 +38,7 @@
 
                 {{#if errorMessage}}
                 <div id="errorMessage">
-                    <p>{{errorMessage}}</p>
+                    {{{errorMessage}}}
                 </div>
                 {{/if}}
 

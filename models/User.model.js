@@ -5,7 +5,7 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: [true, 'Username is required'],
-      minlength: [3, 'Username need to have at least 3 characters'],
+      minlength: [2, 'Username need to have at least 3 characters'],
       unique: true,
       trim: true,
     },
@@ -29,7 +29,7 @@ const userSchema = new Schema(
 
     role: {
       type: String,
-      enum: ['USER', 'MODERATOR', 'ADMIN'],
+      enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
 

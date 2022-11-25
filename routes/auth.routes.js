@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const User = require('./../models/User.model')
 const uploader = require('../config/upploader.config')
 const { loggedIn, loggedOut, checkRoles } = require('../middleware/route-guard')
+const { default: mongoose } = require('mongoose')
 
 const saltRounds = 10
 
@@ -20,7 +21,15 @@ router.post('/sign-up', uploader.single('imageField'), (req, res, next) => {
         .then(salt => bcrypt.hash(password, salt))
         .then(hashedPassword => User.create({ ...req.body, password: hashedPassword, imageUrl: req.file.path }))
         .then(() => res.redirect('/'))
-        .catch(error => next(error))
+        .catch(error => {
+            if (error instanceof mongoose.Error.ValidationError) {
+                let errorMessage = ''
+                Object.entries(error.errors).forEach(elm => errorMessage += `${elm[1].message}<br>`)
+                res.render('auth/sign-up', { errorMessage })
+            } else {
+                next(error)
+            }
+        })
 })
 
 router.get('/log-in', (req, res, next) => {

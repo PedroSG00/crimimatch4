@@ -1,10 +1,10 @@
 const router = require('express').Router()
 const axios = require('axios')
-
 const criminalApi = require('./../services/criminal-api.service')
 const Api = new criminalApi()
+const { loggedIn } = require('../middleware/route-guard')
 
-router.get('/api', (req, res, next) => {
+router.get('/api', loggedIn, (req, res, next) => {
 
     const { page } = req.query
 
@@ -18,11 +18,11 @@ router.get('/api', (req, res, next) => {
         .catch(err => console.error('ERROR', err))
 })
 
-router.get('/match', (req, res, next) => {
+router.get('/match', loggedIn, (req, res, next) => {
     res.render('criminal/form')
 })
 
-router.get('/match/result', (req, res, next) => {
+router.get('/match/result', loggedIn, (req, res, next) => {
 
     const { hair, eyes, sex, race } = req.query
 
@@ -38,7 +38,7 @@ router.get('/match/result', (req, res, next) => {
         .catch(err => console.error('ERROR', err))
 })
 
-router.get('/api/:title/details', (req, res, next) => {
+router.get('/api/:title/details', loggedIn, (req, res, next) => {
 
     const { title } = req.params
 
@@ -51,7 +51,4 @@ router.get('/api/:title/details', (req, res, next) => {
         .catch(err => console.error('ERROR', err))
 })
 
-
 module.exports = router
-
-// { image: criminal.images[0].original }

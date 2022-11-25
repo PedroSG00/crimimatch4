@@ -13,11 +13,11 @@
 
 
             <div class="d-flex justify-content-center mt-3 mb-3">
-                <form action="/user/profile/{{_id}}/delete" method="POST">
+                <form action="/user/profile/{{userDetails._id}}/delete" method="POST">
                     <input type="submit" value="Delete profile" class="btn btn-outline-danger btn-sm me-1">
                 </form>
 
-                <a href="/user/profile/{{_id}}/edit" class="btn btn-outline-success btn-sm">Edit profile</a>
+                <a href="/user/profile/{{userDetails._id}}/edit" class="btn btn-outline-success btn-sm">Edit profile</a>
             </div>
 
         </div>

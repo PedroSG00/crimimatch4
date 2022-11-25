@@ -73,6 +73,7 @@ a {
 }
 
 .navdrop {
+  margin-top: 1.5px;
   font-size: 1em
 }
 
@@ -116,4 +117,14 @@ a {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #011936;
   --bs-gradient: none;
+}
+
+#errorMessage {
+  background-color: #ED254E;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-weight: 800;
+  margin-top: 20px;
+  border-radius: 4px;
 }

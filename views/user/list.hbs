@@ -1,12 +1,12 @@
 <div class="container">
-    <div class="row justify-content-around flex-wrap ">
+    <div class="row justify-content-around flex-wrap mt-5">
         {{#each users}}
         <div class="card text-center" style="width: 18rem;">
-            <img src="{{imageUrl}}" class="card-img-top img-fluid" alt="Profile Image">
+            <img src="{{imageUrl}}" class="card-img-top img-fluid p-2" alt="Profile Image">
             <div class="card-body">
                 <h5 class="card-title">{{username}}</h5>
                 <p class="card-text">{{email}}</p>
-                <a href="/user/list/{{_id}}" class="btn btn-outline-success">Show details</a>
+                <a href="/user/list/{{_id}}" class="btn btn-outline-info d-grid">Show details</a>
             </div>
         </div>
         {{/each}}
