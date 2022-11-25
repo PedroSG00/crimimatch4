@@ -17,41 +17,42 @@
 
 <body>
 
-   <nav class="navbar navbar-expand-lg bg-light">
+   <nav class="navbar navbar-expand-lg horizontal-gradient">
       <div class="container-fluid">
-         <a class="navbar-brand" href="/">CrimiMatch</a>
+         <a class="navbar-brand text-light" href="/">CrimiMatch</a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
          <div class="collapse navbar-collapse" id="navbarNav">
 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav text-light">
 
                {{#if admin}}
                <li class="nav-item">
-                  <a class="nav-link" href="/wanted/api?page=1">Criminal List</a>
+                  <a class="nav-link text-light" href="/wanted/api?page=1">Criminal List</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/wanted/match">Find your match</a>
+                  <a class="nav-link text-light" href="/wanted/match">Find your match</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/user/profile">Profile</a>
+                  <a class="nav-link text-light" href="/user/profile">Profile</a>
                </li>
 
                <li class="nav-item">
-                  <a class="nav-link" href="/user/list">User list</a>
+                  <a class="nav-link text-light" href="/user/list">User list</a>
                </li>
-               <li class="nav-item">
+               <li class="nav-item text-light">
                   <div class="dropdown">
-                     <a class="btn btn-secondary dropdown-toggle text-muted bg-light border-0" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                     <a class="btn btn-secondary dropdown-toggle text-light bg-light border-0 navdrop bg-transparent"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         News
                      </a>
 
-                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/news/create">Create news</a></li>
-                        <li><a class="dropdown-item" href="/news/list">News list</a></li>
+                     <ul class="dropdown-menu horizontal-gradient">
+                        <li class="nav-item horizontal-gradient"><a class="nav-link text-light" aria-current="page"
+                              href="/news/create">Create news</a></li>
+                        <li><a class="nav-link text-light" aria-current="page" href="/news/list">News list</a></li>
                      </ul>
                   </div>
                </li>
@@ -59,35 +60,38 @@
                {{#if user}}
                <li class="nav-item">
                <li class="nav-item">
-                  <a class="nav-link" href="/news/list">News list</a>
+                  <a class="nav-link text-light" href="/news/list">News list</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/wanted/api">Criminal List</a>
+                  <a class="nav-link text-light" href="/wanted/api?page=1">Criminal List</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/wanted/match">Find your match</a>
+                  <a class="nav-link text-light" href="/wanted/match">Find your match</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/user/profile">Profile</a>
+                  <a class="nav-link text-light" href="/user/profile">Profile</a>
                </li>
+
                {{/if}}
 
                <li class="nav-item">
                   <div class="dropdown">
-                     <a class="btn btn-secondary dropdown-toggle text-muted bg-light border-0" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                     <a class="btn btn-secondary dropdown-toggle text-light bg-light border-0 navdrop bg-transparent"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Auth
                      </a>
-                     <ul class="dropdown-menu">
-                        <li class="nav-item">
-                           <a class="nav-link" aria-current="page" href="/auth/sign-up">Sing Up</a>
+
+
+                     <ul class="dropdown-menu horizontal-gradient">
+                        <li class="nav-item horizontal-gradient">
+                           <a class="nav-link text-light" aria-current="page" href="/auth/sign-up">Sing Up</a>
                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="/auth/log-in">Log In</a>
+                        <li class="nav-item horizontal-gradient">
+                           <a class="nav-link text-light" href="/auth/log-in">Log In</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item horizontal-gradient">
                            <form action="/auth/log-out" method="POST">
-                              <button class="nav-link border-0 bg-light">Log-Out</button>
+                              <button class="nav-link border-0 bg-transparent text-light">Log-Out</button>
                            </form>
                         </li>
                      </ul>

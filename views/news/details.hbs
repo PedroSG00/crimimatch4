@@ -1,25 +1,37 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="card text-center border-0 ">
+        <div class="card text-center border-0">
             <div class="card-body">
-                <h5 class="card-title fw-bold m-5 fs-1">{{newsDetails.header}}</h5>
-                <img src="{{newsDetails.image}}" alt="An image">
-                <p class="card-text fs-5 m-5">{{newsDetails.body}}</p>
+                <h5 class="card-title fw-bold m-4 fs-1">{{newsDetails.header}}</h5>
 
-                <form action="/user/{{newsDetails._id}}/add-favorites" method="POST">
-                    <input type="submit" value="❤" class="btn btn-outline-danger btn-md me-1 mb-3">
-                </form>
-                <form action="/user/{{newsDetails._id}}/delete-favorites" method="POST">
-                    <input type="submit" value="♡" class="btn btn-outline-danger btn-md me-1 mb-3">
-                </form>
+                <hr>
+
+                <div class="d-flex align-items-center mt-4">
+                    <img src="{{newsDetails.image}}" alt="An image" class="me-3 p-2">
+                    <p class="card-text fs-6 text-start p-2">{{newsDetails.body}}</p>
+
+                </div>
+
+                <div class="d-flex justify-content-center m-2 p-2">
+                    <form action="/user/{{newsDetails._id}}/add-favorites" method="POST">
+                        <input type="submit" value="❤" class="btn btn-outline-danger btn-md me-1 mb-3">
+                    </form>
+                    <form action="/user/{{newsDetails._id}}/delete-favorites" method="POST">
+                        <input type="submit" value="👎" class="btn btn-outline-danger btn-md me-1 mb-3">
+                    </form>
+
+                </div>
 
 
                 {{#if isAdmin}}
+                <div class="d-flex justify-content-center">
+                    <a href="/news/{{newsDetails._id}}/edit" class="btn btn-outline-success me-5">Edit new</a>
+                    <form action="/news/{{newsDetails._id}}/delete" method="POST">
+                        <input type="submit" value="Delete New" class="btn btn-outline-danger">
+                    </form>
+                </div>
 
-                <a href="/news/{{newsDetails._id}}/edit" class="btn btn-outline-success">Edit new</a>
-                <form action="/news/{{newsDetails._id}}/delete" method="POST">
-                    <input type="submit" value="Delete New" class="btn btn-outline-danger m-3">
-                </form>
+
                 {{/if}}
             </div>
 
@@ -27,40 +39,52 @@
 
             <div>
                 <h4>Comments</h4>
-                {{#each newsDetails.comments}}
-                <hr>
-                <h5>{{author.username}}</h5>
-                <p>{{text}}</p>
+                <div>
+                    <hr>
+                    {{#each newsDetails.comments}}
 
-                {{#if isUser}}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-start">
+                            <h5>{{author.username}}</h5>
+                            <p>{{text}}</p>
+                        </div>
 
 
-                <div class="d-flex justify-content-center m-2">
-                    <form action="/news/{{../newsDetails._id}}/{{_id}}/delete-comment" method="POST">
-                        <input type="submit" value="Delete comment" class="btn btn-outline-danger btn-sm me-1">
-                    </form>
+                        {{#if isUser}}
 
-                    <a href="/news/{{../newsDetails._id}}/{{_id}}/edit-comment"
-                        class="btn btn-outline-success btn-sm">Update
-                        comment</a>
 
+                        <div class="d-flex">
+                            <form action="/news/{{../newsDetails._id}}/{{_id}}/delete-comment" method="POST">
+                                <input type="submit" value="Delete" class="btn btn-outline-warning btn-sm mb-2 me-3">
+                            </form>
+
+                            <a href="/news/{{../newsDetails._id}}/{{_id}}/edit-comment"
+                                class="btn btn-outline-success btn-sm mb-2">Edit</a>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+
+                    {{/if}}
+
+                    {{#if isAdmin}}
+                    <div class="d-flex justify-content-center m-2">
+                        <form action="/news/{{../newsDetails._id}}/{{_id}}/delete-comment" method="POST">
+                            <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm me-1">
+                        </form>
+
+                        <a href="/news/{{../newsDetails._id}}/{{_id}}/edit-comment" class="btn btn-success btn-sm">Edit
+                        </a>
+
+                    </div>
+                    {{/if}}
+
+                    {{/each}}
                 </div>
 
-                {{/if}}
-
-                {{#if isAdmin}}
-                <div class="d-flex justify-content-center m-2">
-                    <form action="/news/{{../newsDetails._id}}/{{_id}}/delete-comment" method="POST">
-                        <input type="submit" value="Delete comment" class="btn btn-outline-danger btn-sm me-1">
-                    </form>
-
-                    <a href="/news/{{../newsDetails._id}}/{{_id}}/edit-comment" class="btn btn-success btn-sm">Update
-                        comment</a>
-
-                </div>
-                {{/if}}
-
-                {{/each}}
             </div>
 
 
@@ -73,8 +97,8 @@
                 </div>
             </form>
 
-            <div class="card-footer text-muted">
-                <a href="{{newsDetails.link}}">{{newsDetails.link}}</a>
+            <div class="card-footer text-muted m-2 align-items-center">
+                <a href="{{newsDetails.link}}">Read more!</a>
             </div>
 
         </div>

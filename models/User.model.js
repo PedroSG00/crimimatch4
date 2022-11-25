@@ -4,25 +4,27 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: false,
+      required: [true, 'Username is required'],
+      minlength: [3, 'Username need to have at least 3 characters'],
       unique: true,
       trim: true,
     },
     email: {
       type: String,
-      required: true,
+      required: [true, 'Email is required'],
       unique: true,
       trim: true,
       lowercase: true,
     },
 
     imageUrl: {
-      type: String
+      type: String,
+      required: [true, 'Profile Image is required']
     },
 
     password: {
       type: String,
-      required: true,
+      required: [true, 'Password is required'],
     },
 
     role: {

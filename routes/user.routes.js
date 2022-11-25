@@ -22,9 +22,11 @@ router.get('/list/:user_id', loggedIn, checkRoles('ADMIN'), (req, res, next) => 
 
     User
         .findById(user_id)
-        .then(userDetails => {
-            res.render('user/details', userDetails)
-        })
+        .populate('favorites')
+        .then(userDetails => res.render('user/profile', {
+            userDetails,
+            notEmpty: userDetails.favorites.length > 0
+        }))
         .catch(error => next(error))
 })
 

@@ -1,25 +1,48 @@
-<div class="container d-flex justify-content-center flex-column align-items-center">
-    <div class="row">
-        <h2>{{username}} profile</h2>
+<div class="container">
+    <div class="row justify-content-center flex-column align-items-center m-5">
+        <h2 class="text-center">{{userDetails.username}} profile</h2>
 
         <div class="card mt-3 text-center col-md-6">
 
-            <img src="{{imageUrl}}" alt="Profile Image" class="img-fluid">
-            <h3>Name: {{username}}</h3>
+            <img src="{{userDetails.imageUrl}}" alt="Profile Image" class="img-fluid p-4">
+            <h5>Name: {{userDetails.username}}</h5>
             <hr>
-            <h3>Email: {{email}}</h3>
+            <h5>Email: {{userDetails.email}}</h5>
             <hr>
-            <h3>Role: {{role}}</h3>
+            <h5>Role: {{userDetails.role}}</h5>
 
 
-            <div class="d-flex justify-content-center mt-3">
+            <div class="d-flex justify-content-center mt-3 mb-3">
                 <form action="/user/list/{{_id}}/delete" method="POST">
-                    <input type="submit" value="Delete your profile" class="btn btn-danger btn-sm me-1">
+                    <input type="submit" value="Delete profile" class="btn btn-outline-danger btn-sm me-1">
                 </form>
 
-                <a href="/user/list/{{_id}}/edit" class="btn btn-success btn-sm">Edit profile</a>
+                <a href="/user/list/{{_id}}/edit" class="btn btn-outline-success btn-sm">Edit profile</a>
             </div>
 
         </div>
+
+        {{#if notEmpty}}
+        <hr class="mt-5">
+        <h3 class="m-5">Favorites news</h3>
+        <div class="row m-3">
+            {{#each userDetails.favorites}}
+
+            <div class="col-md-6">
+                <div class="card m-3" style="width: 400px;">
+                    <div class="card-body">
+                        <img src="{{image}}" alt="CrimeImage" class="img-fluid image-size mt-2">
+                        <h5 class="card-title text-center fw-bold mt-2">{{header}}</h5>
+                        <a href="/news/{{_id}}" class="card-link d-grid text-center btn btn-outline-danger">See
+                            more</a>
+                    </div>
+                </div>
+            </div>
+
+
+            {{/each}}
+
+        </div>
+        {{/if}}
 
     </div>
